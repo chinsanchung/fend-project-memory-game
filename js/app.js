@@ -1,8 +1,28 @@
-/*
- * Create a list that holds all of your cards
- */
+const cards = document.getElementsByClassName('card');
 
+//const cards = Array.from(document.getElementsByClassName('card'))
+const restart = document.querySelector('.restart');
+const deck = document.querySelector('.deck');
 
+//Add event : shuffle cards
+
+  //function shuffle cards
+let newDeck = '';
+function randomDeck () {
+  for (const card of cards) {
+    deck.appendChild(card);
+  }
+}
+
+restart.addEventListener('click', function (e) {
+  e.preventDefault();
+  //excute shuffle method
+  //shuffle(cards);
+  //deleting existing deck
+  //deck.innerHTML = '';
+  //loop cards
+  randomDeck();
+});
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
