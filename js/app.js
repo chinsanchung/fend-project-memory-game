@@ -1,34 +1,18 @@
+//array of all cards
 const cards = document.getElementsByClassName('card');
-
-//const cards = Array.from(document.getElementsByClassName('card'))
+//element of div restart
 const restart = document.querySelector('.restart');
+//ul class deck
 const deck = document.querySelector('.deck');
+//card's correctly matching number
+const moves = document.querySelector('.moves');
 
-//Add event : shuffle cards
-
-  //function shuffle cards
-let newDeck = '';
+//function shuffle cards to add shuffle event
 function randomDeck () {
   for (const card of cards) {
     deck.appendChild(card);
   }
 }
-
-restart.addEventListener('click', function (e) {
-  e.preventDefault();
-  //excute shuffle method
-  //shuffle(cards);
-  //deleting existing deck
-  //deck.innerHTML = '';
-  //loop cards
-  randomDeck();
-});
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -44,6 +28,20 @@ function shuffle(array) {
 
     return array;
 }
+
+//Add event : shuffle cards
+restart.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  randomDeck();
+});
+
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
 
 
 /*
