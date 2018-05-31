@@ -1,18 +1,57 @@
 //array of all cards
-const cards = document.getElementsByClassName('card');
+let arrayCards = Array.from(document.getElementsByClassName('card'));
+//cards which card's className has 'show'
+const show = document.getElementsByClassName('show');
 //element of div restart
 const restart = document.querySelector('.restart');
 //ul class deck
 const deck = document.querySelector('.deck');
 //card's correctly matching number
 const moves = document.querySelector('.moves');
+//star element. I don't understand role of this.
+//const star = document.querySelector('.fa-star');
 
-//function shuffle cards to add shuffle event
-function randomDeck () {
-  for (const card of cards) {
+//count makes to move new page if all cards are matched
+let count = 0;
+
+//failed event : function shuffle cards to add shuffle event
+// 01
+// function randomDeck () {
+//   for (const card of cards) {
+//     deck.appendChild(card);
+//   }
+// }
+//02
+// function randomDeck () {
+//   shuffle(cards);
+//   for (const card of cards) {
+//     if (card.childNodes[1].className === 'open') {
+//       card.childNodes[1].classList.remove('open');
+//     } else if (card.childNodes[1].className === 'show') {
+//       card.childNodes[1].classList.remove('show');
+//     } else {
+//       card.childNodes[1].classList.remove('match');
+//     }
+//   }
+//   moves.innerHTML = 0;
+// }
+
+//Add event : shuffle cards
+
+restart.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  shuffle(arrayCards);
+  //empty all cards
+  deck.innerHTML = '';
+  //and input shuffled cards
+  for (card of arrayCards) {
+    //remove open, show, match class to initialize cards
+    card.classList.remove('open', 'show', 'match');
     deck.appendChild(card);
   }
-}
+  moves.innerHTML = 0;
+});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -28,29 +67,82 @@ function shuffle(array) {
 
     return array;
 }
+/* I used setTimeout method to give enough time to have animations. */
+//Add event : open and close card
+deck.addEventListener('click', function (ev) {
+  ev.preventDefault();
+  if ((ev.target.className !== 'open') || (ev.target.className !== 'match')) {
+    ev.target.classList.add('open', 'show');
+    // ev.target.style.animationName = 'click';
+    //get li that className is 'card open show' and give setTimeout. It needs time that second card have animation.
+    setTimeout(function () {
+      if (show.length === 2) {
+        if(show[0].children[0].classList.value === show[1].children[0].classList.value) {
+          //change show's first element
+          trueClass(ev.target);
+          //set show[0] not show[1]. show has one HTMLCollection because one of show was deleted before
+          trueClass(show[0]);
+          //change moves
+          moves.innerHTML = parseInt(moves.innerText) + 1;
+          count += 1;
+          if (count === 8) {
+            success();
+          }
+        } else {
 
-//Add event : shuffle cards
-restart.addEventListener('click', function (e) {
-  e.preventDefault();
+          setTimeout(function ()
+            { falseClass(ev.target) }, 800);
+          setTimeout(function ()
+            { falseClass(show[0]) }, 800);
+          //change moves
+          moves.innerHTML = parseInt(moves.innerText) + 1;
 
-  randomDeck();
+        }
+      }
+    }, 1600);
+  }
+
 });
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+//Add event : matching
 
+//change cards if they are same
+function trueClass (target) {
+  target.classList.add('match');
+  target.classList.remove('show', 'open');
+}
+//change cards if they aren't same
+function falseClass (target) {
+  target.classList.remove('show', 'open');
+  target.classList.add('wrong');
+  setTimeout(function () {
+    target.classList.remove('wrong');
+  }, 800);
+}
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+//failed function : matching
+// function matching (targets) {
+//   if(show[0].childNodes[1].className === show[1].childNodes[1].className) {
+//     trueClass(show[0]);
+//     trueClass(show[1]);
+//     moves.innerHTML = parseInt(moves.innerText) + 1
+//
+//   } else {
+//     falseClass(show[0]);
+//     falseClass(show[1]);
+//   }
+// }
+
+// check all card's class is 'match'
+/* It doesn't work. When alert message excutes, score has 0 value.
+But when I tried moves.innerText at browser's console, it has correct value.
+It's strange. I can't understand why it happened.
+
+At first, I tried to make new HTML file that shows result, it failed.
+Two HTML file that links one js makes errors. (cannot read properties when falseClass() excuting.)*/
+let score = parseInt(moves.innerText);
+function success () {
+  setTimeout(function () {
+    alert(`Success! You have ${score} moves to win!`)
+  }, 2000);
+}
