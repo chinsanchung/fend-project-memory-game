@@ -147,16 +147,27 @@ function successMessage () {
   <button class="restart" onclick="restartButton()">Restart</button>`;
   document.body.innerHTML = resultPage;
 }
-/* This function has problem. It shows container with cards which are already matched.
-I tried to solve this problem to shuffle function before appendChild(container). But data of matched cards still restored in container.
-How can I make container with cards being shuffled? */
+
+//function that restart memory game again.
 function restartButton () {
   document.body.innerHTML = '';
   shuffle(arrayCards);
+
+  /* I used this loop again because restartButton() excutes shuffle(arrayCards). It needs to input shuffled cards to HTML.
+  This codes has problem. It makes error sometimes.
+   (Error is that moves add two counts, not one. And Console says "Uncaught TypeError: Cannot read property 'classList' of undefined
+    at falseClass (app.js:117) at app.js:97)
+  But strange thing is that it works well sometimes. I can't find the reason. Why this problem happes? */
+  // for (const card of arrayCards) {
+  //   card.classList.remove('open', 'show', 'match');
+  //   deck.appendChild(card);
+  // }
+  // moves.innerHTML = 0;
+
   document.body.appendChild(container);
 }
 
-//success function
+//success function that starts successMessage function.
 function success () {
   successMessage();
 }
