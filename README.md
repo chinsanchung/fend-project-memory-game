@@ -18,3 +18,11 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Function
+- When click card, it turns blue with animation. (using keyframes animation)
+- Compare cards which are clicked.
+  + change class to match when they're same
+  + turn back cards when they're different
+  + each time comparing cards, count updates and shows at moves class
+- All cards are matching, Success message will appear.
