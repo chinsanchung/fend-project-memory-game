@@ -11,6 +11,7 @@ const moves = document.querySelector('.moves');
 //star element. I don't understand role of this.
 //const star = document.querySelector('.fa-star');
 
+const container = document.querySelector('.container');
 //count makes to move new page if all cards are matched
 let count = 0;
 
@@ -86,7 +87,7 @@ deck.addEventListener('click', function (ev) {
           moves.innerHTML = parseInt(moves.innerText) + 1;
           count += 1;
           if (count === 8) {
-            success();
+            setTimeout(function () {success();}, 2000);
           }
         } else {
 
@@ -133,16 +134,29 @@ function falseClass (target) {
 //   }
 // }
 
-// check all card's class is 'match'
-/* It doesn't work. When alert message excutes, score has 0 value.
-But when I tried moves.innerText at browser's console, it has correct value.
-It's strange. I can't understand why it happened.
-
-At first, I tried to make new HTML file that shows result, it failed.
-Two HTML file that links one js makes errors. (cannot read properties when falseClass() excuting.)*/
+//It will be used to give value at resultPage.
 let score = parseInt(moves.innerText);
+
+//function that appearing message when all cards are matched.
+function successMessage () {
+  let resultPage = '';
+  let score = parseInt(moves.innerText);
+  resultPage += `<div class="success" style="text-align:center; width:300px; height:300px; margin-left: 800px;">
+  <h1 class="message">Congratulation!!</h1>
+  <p class="message">You have ${score} moves to win the game!</p>
+  <button class="restart" onclick="restartButton()">Restart</button>`;
+  document.body.innerHTML = resultPage;
+}
+/* This function has problem. It shows container with cards which are already matched.
+I tried to solve this problem to shuffle function before appendChild(container). But data of matched cards still restored in container.
+How can I make container with cards being shuffled? */
+function restartButton () {
+  document.body.innerHTML = '';
+  shuffle(arrayCards);
+  document.body.appendChild(container);
+}
+
+//success function
 function success () {
-  setTimeout(function () {
-    alert(`Success! You have ${score} moves to win!`)
-  }, 2000);
+  successMessage();
 }
