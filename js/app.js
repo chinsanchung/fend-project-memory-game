@@ -149,15 +149,15 @@ function successMessage () {
 }
 
 //function that restart memory game again.
+/* I used this loop again because restartButton() excutes shuffle(arrayCards). It needs to input shuffled cards to HTML.
+This codes has problem. It sometimes makes error when two cards are not matched.
+ (Error is that moves add two counts, not one. And Console says "Uncaught TypeError: Cannot read property 'classList' of undefined
+  at falseClass (app.js:117) at app.js:97)
+But strange thing is that this restartButton works well sometimes. I can't find the reason. Why this problem happes? */
 function restartButton () {
   document.body.innerHTML = '';
   shuffle(arrayCards);
-
-  /* I used this loop again because restartButton() excutes shuffle(arrayCards). It needs to input shuffled cards to HTML.
-  This codes has problem. It makes error sometimes.
-   (Error is that moves add two counts, not one. And Console says "Uncaught TypeError: Cannot read property 'classList' of undefined
-    at falseClass (app.js:117) at app.js:97)
-  But strange thing is that it works well sometimes. I can't find the reason. Why this problem happes? */
+  //note. this part sometimes makes error.
   // for (const card of arrayCards) {
   //   card.classList.remove('open', 'show', 'match');
   //   deck.appendChild(card);
