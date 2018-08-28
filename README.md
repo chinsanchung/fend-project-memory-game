@@ -18,3 +18,7 @@
 - [W3Schools](https://www.w3schools.com/)
 - [SweetAlert2](https://sweetalert2.github.io/)
 - [MDN web docs](https://developer.mozilla.org/ko/)
+
+## Images
+![card01](https://github.com/chinsanchung/frontend-memory-game/blob/master/images/card01.jpg)
+!]card02](https://github.com/chinsanchung/frontend-memory-game/blob/master/images/card02.jpg)
