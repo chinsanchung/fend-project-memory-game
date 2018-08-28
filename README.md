@@ -21,4 +21,4 @@
 
 ## Images
 ![card01](https://github.com/chinsanchung/frontend-memory-game/blob/master/images/card01.jpg)
-!]card02](https://github.com/chinsanchung/frontend-memory-game/blob/master/images/card02.jpg)
+![card02](https://github.com/chinsanchung/frontend-memory-game/blob/master/images/card02.jpg)
