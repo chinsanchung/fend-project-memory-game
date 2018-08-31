@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/chinsanchung/fend-project-memory-game#readme",
   "devDependencies": {
+    "eslint-config-google": "^0.9.1",
+    "gulp-eslint": "^5.0.0",
     "gulp-sass": "^4.0.1"
   },
   "dependencies": {
