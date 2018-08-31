@@ -2,6 +2,7 @@
 .htmlhintrc
 .stylelintrc
 .eslintrc.json
+.eslintrc.js
 
 node_modules
 styles/sass
