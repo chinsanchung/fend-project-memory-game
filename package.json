@@ -1,0 +1,26 @@
+{
+  "name": "frontend-memory-game",
+  "version": "1.0.0",
+  "description": "- OS : Windows 10 Home\r - language : HTML, CSS, JavaScript\r - tools : Atom text editor, Github Desktop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinsanchung/fend-project-memory-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chinsanchung/fend-project-memory-game/issues"
+  },
+  "homepage": "https://github.com/chinsanchung/fend-project-memory-game#readme",
+  "devDependencies": {
+    "gulp-sass": "^4.0.1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0"
+  }
+}
