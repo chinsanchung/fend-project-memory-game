@@ -20,7 +20,7 @@ let starCount = 0;
 
 //Add event : shuffle cards
 
-restart.addEventListener('click', function (e) {
+restart.addEventListener('click', (e) => {
   e.preventDefault();
 
   shuffle(arrayCards);
@@ -44,7 +44,7 @@ restart.addEventListener('click', function (e) {
 });
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+shuffle = (array) => {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -60,13 +60,13 @@ function shuffle(array) {
 
 /* I used setTimeout method to give enough time to have animations. */
 //Add event : open and close card
-deck.addEventListener('click', function (ev) {
+deck.addEventListener('click', (ev) => {
   ev.preventDefault();
   if ((ev.target.className !== 'open') || (ev.target.className !== 'match')) {
     ev.target.classList.add('open', 'show');
     deck.style.pointerEvents = 'none';
     //get li that className is 'card open show' and give setTimeout. It needs time that second card have animation.
-    setTimeout(function () {
+    setTimeout(() => {
 
       if (show.length === 2) {
         if(show[0].children[0].classList.value === show[1].children[0].classList.value) {
@@ -81,12 +81,12 @@ deck.addEventListener('click', function (ev) {
           starGrade();
           if (count === 8) {
             stopTime();
-            setTimeout(function () {success();}, 2000);
+            setTimeout(() => {success();}, 2000);
           }
         } else {
-          setTimeout(function ()
+          setTimeout(() =>
             { falseClass(ev.target) }, 700);
-          setTimeout(function ()
+          setTimeout(() =>
             { falseClass(show[0]) }, 700);
           //change moves
           moves.innerHTML = parseInt(moves.innerText) + 1;
@@ -102,13 +102,13 @@ deck.addEventListener('click', function (ev) {
 //Add event : matching
 
 //change cards if they are same
-function trueClass (target) {
+trueClass = (target) => {
   target.classList.add('match');
   target.classList.remove('show', 'open');
 
 }
 //change cards if they aren't same
-function falseClass (target) {
+falseClass = (target) => {
   target.classList.remove('show', 'open');
   target.classList.add('wrong');
   setTimeout(function () {
@@ -121,7 +121,7 @@ let second = 0;
 let minute = 0;
 let timeCheck = setInterval(timer, 1000);
 //function : timer
-function timer () {
+timer = () => {
   second += 1;
 
   if (second === 60) {
@@ -131,7 +131,7 @@ function timer () {
   let time = `${minute}:${second}`;
   document.querySelector('.timer').innerHTML = time;
 }
-function stopTime () {
+stopTime = () => {
   clearInterval(timeCheck);
 }
 
@@ -141,7 +141,7 @@ For test, I reduced starCount number in switch statement to case 3, case 5.*/
 const newStar = `<i class="fa fa-star-o"></i>`;
 //This variable gives value to the final score page.
 let finalStar = 0;
-function starGrade () {
+starGrade = () => {
   switch (starCount) {
     case 3:
       console.log(starCount);
@@ -157,7 +157,7 @@ function starGrade () {
 }
 
 //function that appearing message when all cards are matched.
-function successMessage () {
+successMessage = () => {
   //It helps to give value at resultPage.
   let score = parseInt(moves.innerText);
   // let score = parseInt(moves.innerText);
@@ -177,7 +177,7 @@ function successMessage () {
 //It makes to reset stars element.
 const oldStar = `<i class="fa fa-star"></i>`;
 //function that restart memory game again.
-function restartButton () {
+restartButton = () => {
   document.body.innerHTML = '';
   shuffle(arrayCards);
 
@@ -201,6 +201,6 @@ function restartButton () {
 }
 
 //success function that starts successMessage function.
-function success () {
+success = () => {
   successMessage();
 }
